@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masukkan Username - Survival Craft</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{
+min-height:100vh;
+background:url('background.jpg') no-repeat center/cover fixed;
+color:white;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:0}
+
+/* NAVBAR */
+.navbar{
+position:absolute;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+width:90%;
+max-width:1100px;
+display:flex;
+align-items:center;
+background:rgba(0,0,0,.5);
+backdrop-filter:blur(12px);
+padding:15px 25px;
+border-radius:20px;
+z-index:2;
+}
+.navbar img{width:45px;margin-right:15px}
+.navbar h1{font-size:22px;font-weight:700}
+
+/* CARD */
+.card{
+margin-top:160px;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(15px);
+padding:30px;
+border-radius:24px;
+width:100%;
+max-width:420px;
+z-index:2;
+text-align:center;
+}
+
+/* AVATAR */
+.avatar{
+width:120px;
+height:120px;
+margin:0 auto 20px;
+border-radius:20px;
+overflow:hidden;
+background:#000;
+}
+.avatar img{
+width:100%;
+height:100%;
+image-rendering:pixelated;
+}
+
+/* INPUT */
+.input input{
+width:100%;
+padding:15px;
+border-radius:16px;
+border:none;
+background:#111;
+color:#fff;
+}
+.notice{
+margin-top:8px;
+font-size:12px;
+color:#facc15;
+opacity:.9;
+}
+
+/* TOGGLE */
+.toggle{
+margin:18px 0;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+}
+.switch{
+width:54px;
+height:28px;
+background:#6b7280;
+border-radius:20px;
+cursor:pointer;
+position:relative;
+transition:.3s;
+}
+.switch::after{
+content:"";
+width:22px;
+height:22px;
+background:#fff;
+border-radius:50%;
+position:absolute;
+top:3px;
+left:4px;
+transition:.3s;
+}
+.switch.active{background:#22c55e}
+.switch.active::after{left:28px}
+
+/* BUTTON */
+button{
+margin-top:15px;
+width:100%;
+padding:15px;
+border:none;
+border-radius:16px;
+background:#FFC107;
+font-weight:800;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="navbar">
+<img src="logo.jpg">
+<h1>SURVIVAL CRAFT</h1>
+</div>
+
+<div class="card">
+
+<div class="avatar">
+<img id="skin" src="placeholder.png" alt="Avatar">
+</div>
+
+<div class="input">
+<input id="username" placeholder="Masukkan Username Minecraft">
+</div>
+
+<div class="notice">
+Pastikan username sama persis seperti di Minecraft.
+</div>
+
+<div class="toggle">
+<span>Java</span>
+<div id="toggle" class="switch"></div>
+<span>Bedrock</span>
+</div>
+
+<button onclick="submitUser()">Lanjut</button>
+</div>
+
+<script>
+let isBedrock = false;
+
+const toggle = document.getElementById("toggle");
+const input  = document.getElementById("username");
+const skin   = document.getElementById("skin");
+
+/* PAKSA PLACEHOLDER SAAT LOAD */
+skin.src = "placeholder.jpg";
+
+/* TOGGLE */
+toggle.addEventListener("click", () => {
+  isBedrock = !isBedrock;
+  toggle.classList.toggle("active");
+  updateSkin();
+});
+
+/* INPUT */
+input.addEventListener("input", updateSkin);
+
+function updateSkin(){
+  const username = input.value.trim();
+
+  if(username === ""){
+    skin.src = "placeholder.jpg";
+    return;
+  }
+
+  if(isBedrock){
+    skin.src = "https://mc-heads.net/avatar/Steve/128";
+  } else {
+    skin.src = "https://mc-heads.net/avatar/" + username + "/128";
+  }
+}
+
+function submitUser(){
+  const username = input.value.trim();
+  if(!username){
+    alert("Username wajib diisi!");
+    return;
+  }
+
+  localStorage.setItem("mc_user", username);
+  localStorage.setItem("mc_client", isBedrock ? "Bedrock" : "Java");
+  location.href = "rank.html";
+}
+</script>
+
+</body>
+</html>
