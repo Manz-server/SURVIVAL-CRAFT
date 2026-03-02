@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toko Rank - Survival Craft</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{
+background:url('background.jpg') no-repeat center/cover fixed;
+color:white;
+}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:0}
+
+/* NAVBAR */
+.navbar{
+margin:20px auto;
+width:90%;
+max-width:1100px;
+display:flex;
+align-items:center;
+background:rgba(0,0,0,.5);
+backdrop-filter:blur(12px);
+padding:14px 22px;
+border-radius:20px;
+z-index:2;
+position:relative;
+}
+.navbar img{width:40px;margin-right:12px}
+.navbar h1{font-size:20px;font-weight:700}
+
+/* CONTAINER */
+.container{
+position:relative;
+z-index:2;
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+/* TITLE */
+.title{
+text-align:center;
+font-size:38px;
+font-weight:800;
+color:#FF8C00;
+}
+.subtitle{
+text-align:center;
+opacity:.7;
+margin-bottom:30px;
+}
+
+/* PROFILE */
+.profile{
+text-align:center;
+margin-bottom:40px;
+}
+.profile img{
+width:110px;
+border-radius:18px;
+image-rendering:pixelated;
+}
+.profile small{opacity:.6}
+.logout{
+margin-top:10px;
+background:#ef4444;
+border:none;
+padding:10px 18px;
+border-radius:14px;
+font-weight:700;
+cursor:pointer;
+}
+
+/* RANK CARD */
+.rank{
+background:rgba(0,0,0,.75);
+border-radius:22px;
+padding:22px;
+margin-bottom:24px;
+border-left:6px solid;
+}
+.rank h3{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:10px;
+}
+.rank ul{
+padding-left:18px;
+font-size:14px;
+opacity:.85;
+}
+.buy-btn{
+margin-top:15px;
+display:inline-block;
+background:#FFC107;
+color:black;
+padding:10px 20px;
+border-radius:14px;
+font-weight:800;
+text-decoration:none;
+cursor:pointer;
+}
+
+/* COLORS */
+.loyal{border-color:#cd7f32}
+.supporter{border-color:#c0c0c0}
+.pro{border-color:#ffd700}
+.platinum{border-color:#22d3ee}
+.elite{border-color:#9333ea}
+.legend{border-color:#38bdf8}
+.lord{border-color:#f59e0b}
+.glory{border-color:#ef4444}
+.mirlace{border-color:#10b981}
+</style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<div class="navbar">
+<img src="logo.jpg">
+<h1>SURVIVAL CRAFT</h1>
+</div>
+
+<div class="container">
+
+<h1 class="title">Toko Rank</h1>
+<p class="subtitle">Beli rank untuk membuka keunggulan dan fitur eksklusif</p>
+
+<div class="profile">
+<img id="skin">
+<h3 id="welcome"></h3>
+<small id="client"></small><br>
+<button class="logout" onclick="logout()">Logout</button>
+</div>
+
+<div class="rank loyal">
+<h3><i class="fa-solid fa-medal"></i> Loyal 🥉 - Rp5.000</h3>
+<ul>
+<li>Kit Loyal</li>
+<li>Money 5k</li>
+<li>Claim +10.000</li>
+<li>2 Home</li>
+</ul>
+<a class="buy-btn" onclick="buy('Loyal','5.000')">Beli via WhatsApp</a>
+</div>
+
+<div class="rank supporter">
+<h3><i class="fa-solid fa-star"></i> Supporter 🥈 - Rp10.000</h3>
+<ul>
+<li>Kit Supporter</li>
+<li>Fly</li>
+<li>Claim +20.000</li>
+<li>3 Home</li>
+</ul>
+<a class="buy-btn" onclick="buy('Supporter','10.000')">Beli via WhatsApp</a>
+</div>
+
+<div class="rank pro">
+<h3><i class="fa-solid fa-crown"></i> Pro 🥇 - Rp20.000</h3>
+<ul>
+<li>Kit Pro</li>
+<li>Fly</li>
+<li>Weather Control</li>
+<li>5 Home</li>
+</ul>
+<a class="buy-btn" onclick="buy('Pro','20.000')">Beli via WhatsApp</a>
+</div>
+
+<div class="rank platinum">
+<h3><i class="fa-solid fa-gem"></i> Platinum 🎖️ - Rp25.000</h3>
+<ul>
+<li>Heal & Repair</li>
+<li>Time Control</li>
+<li>Claim +40.000</li>
+<li>7 Home</li>
+</ul>
+<a class="buy-btn" onclick="buy('Platinum','25.000')">Beli via WhatsApp</a>
+</div>
+
+<div class="rank elite">
+<h3><i class="fa-solid fa-trophy"></i> Elite 🏆 - Rp30.000</h3>
+<ul>
+<li>Heal, Repair, Feed</li>
+<li>Fly & Weather</li>
+<li>9 Home</li>
+</ul>
+<a class="buy-btn" onclick="buy('Elite','30.000')">Beli via WhatsApp</a>
+</div>
+
+<div class="rank legend">
+<h3><i class="fa-solid fa-dragon"></i> Legend 💎 - Rp40.000</h3>
+<ul>
+<li>Rename Item</li>
+<li>Nick & Heal</li>
+<li>11 Home</li>
+</ul>
+<a class="buy-btn" onclick="buy('Legend','40.000')">Beli via WhatsApp</a>
+</div>
+
+<div class="rank lord">
+<h3><i class="fa-solid fa-chess-king"></i> Lord ⭐ - Rp80.000</h3>
+<ul>
+<li>TP Bebas</li>
+<li>All Legend Feature</li>
+<li>13 Home</li>
+</ul>
+<a class="buy-btn" onclick="buy('Lord','80.000')">Beli via WhatsApp</a>
+</div>
+
+<div class="rank glory">
+<h3><i class="fa-solid fa-fire"></i> Glory 👑 - Rp100.000</h3>
+<ul>
+<li>Vanish</li>
+<li>All Lord Feature</li>
+<li>15 Home</li>
+</ul>
+<a class="buy-btn" onclick="buy('Glory','100.000')">Beli via WhatsApp</a>
+</div>
+
+<div class="rank mirlace">
+<h3><i class="fa-solid fa-shield-halved"></i> Mirlace 🤴 - Rp170.000</h3>
+<ul>
+<li>God Mode</li>
+<li>Summon Mob</li>
+<li>All Feature Unlock</li>
+</ul>
+<a class="buy-btn" onclick="buy('Mirlace','170.000')">Beli via WhatsApp</a>
+</div>
+
+</div>
+
+<script>
+const user = localStorage.getItem("mc_user");
+const client = localStorage.getItem("mc_client");
+if(!user) location.href="username.html";
+
+document.getElementById("welcome").innerText="Welcome, "+user;
+document.getElementById("client").innerText=client+" client";
+document.getElementById("skin").src =
+client==="Java"
+? "https://mc-heads.net/avatar/"+user+"/128"
+: "https://mc-heads.net/avatar/Steve/128";
+
+function logout(){
+localStorage.clear();
+location.href="username.html";
+}
+
+function buy(rank, price){
+const text =
+`Halo min, saya mau beli rank ${rank} (Rp${price})
+Username: ${user}
+Platform: ${client}`;
+
+location.href =
+"https://wa.me/62895375777262?text=" + encodeURIComponent(text);
+}
+</script>
+
+</body>
+</html>
